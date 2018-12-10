@@ -1,0 +1,130 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border border-dark text-white rounded" id="upper">
+        <h2> In this round you are Player <span id="bright">B</span> </h2>
+          <small>Round <span id="bright">{{ subsession.round_number }}</span> of {{ Constants.num_rounds}}</small>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-6 border rounded" id="pale">
+        <h5> Your history score is: </h5>
+        {% if player.treat == 1 %}
+            <br>
+            <button class="btn buttonkeep btn-large" disabled>K</button> <button class="btn buttonkeep btn-large" disabled>K</button>
+            <button class="btn buttongive btn-large" disabled>G</button>
+            <br><br>
+        {% endif %}
+      </div>
+      <div class="col-sm-6 border rounded" id="pale">
+        <h5>Player A chose option:</h5>
+            <br>
+            <button class="btn buttongive btn-lg" disabled> GIVE </button>
+            <p>
+                You get <b>{{ Constants.give_b }}</b> and A gets <b>{{ Constants.give_a }}</b>
+            </p>
+        {% if player.treat == 1 %}
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
+
+        {% elif player.treat >= 2 %}
+            <br>
+        <h5>Click on the button to send your report on A's choice :</h5>
+        <button class="btn buttonchoicekeep btn-large">K</button>
+            <button class="btn buttonchoicegive btn-large">G</button>
+        {% endif %}
+      <br><br>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+ <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+        .button:hover {
+            background-color: #FFEB3B;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        .buttonchoicekeep {
+            background-color: #E91E63;
+            color: #ffffff;
+            border: 3px solid #AD1457;
+            padding: 6px 12px;
+            display: inline-block;
+            {#font-size: 13px;#}
+        }
+        .buttonchoicekeep:hover {
+            background-color: #ffffff;
+            color: #AD1457;
+            border: 3px solid #AD1457;
+            padding: 6px 12px;
+            display: inline-block;
+            {#font-size: 13px;#}
+        }
+        .buttonchoicegive {
+            background-color: #009688;
+            color: #ffffff;
+            border: 3px solid #00838F;
+            padding: 6px 12px;
+            display: inline-block;
+            {#font-size: 13px;#}
+        }
+        .buttonchoicegive:hover {
+            background-color: #ffffff;
+            color: #00838F;
+            border: 3px solid #00838F;
+            padding: 6px 12px;
+            display: inline-block;
+            {#font-size: 13px;#}
+        }
+        .buttonkeep {
+            background-color: #E91E63;
+            color: #ffffff;
+            border: 3px solid #AD1457;
+            padding: 6px 12px;
+            display: inline-block;
+            {#font-size: 13px;#}
+        }
+        .buttongive {
+            background-color: #009688;
+            color: #ffffff;
+            border: 3px solid #00838F;
+            padding: 6px 12px;
+            display: inline-block;
+            {#font-size: 13px;#}
+        }
+        #upper{
+            background-color: #333333;
+        }
+        #middle{
+            background-color: #424242;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #pale{
+            background-color: #ffffff;
+        }
+        #bright{
+            color: #FFEB3B;
+        }
+    </style>
+{% endblock %}
