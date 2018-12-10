@@ -1,0 +1,201 @@
+{% load otree staticfiles %}
+{% load static %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+        <div class="container">
+            <!--Summary of Setting-->
+            <div class="row">
+                <div class="col-sm-12 border rounded" id='pale'>
+                    <h5>Summary</h5>
+                    <p>
+                        This experiment lasts for <b>{{ Constants.num_rounds}}</b> periods and throughout the experiment
+                        you are part of the same group of <b>{{ Constants.players_per_group }}</b> participants. At the
+                        beginning of each period the participants in your group of ten will be randomly divided into five
+                        pairs. One of the two participants in each pair will be assigned to the role of <b>Player A</b> and
+                        the other to the role of <b>Player B</b>. Your pair and the role you play will be randomly assigned
+                        by the computer at the start of each period. You will be informed of your role on the header of
+                        each screen. This is illustrated in the images below.
+                    </p>
+                </div>
+            </div>
+            <!--Decisions-->
+            <div class="row">
+                <div class="col-sm-12 border rounded" id='pale'>
+                    <h5>Decisions</h5>
+                    <p>
+                        In each period, Player A makes the first decision and has to pick one of two options:
+                        <button class="btn buttonkeep btn-xs" disabled>KEEP</button> or
+                        <button class="btn buttongive btn-xs" disabled>GIVE</button>.
+                    </p>
+                    <ul>
+                        <li>If Player A picks <button class="btn buttonkeep btn-xs" disabled>KEEP</button>
+                            she will receive <b>{{ Constants.keep_a }} points</b> and Player B will receive
+                            <b>{{ Constants.keep_b }} points</b>. </li>
+                        <br>
+                        <li>If Player A picks <button class="btn buttongive btn-xs" disabled>GIVE</button> she receives
+                            <b>{{ Constants.give_a }} points</b> while Player B receives <b>{{ Constants.give_b }} points</b>.</li>
+                    </ul>
+                    <p>
+                        Before making her decision, Player A observes Player B's history score. The history score provides
+                        information on whether Player B chose <button class="btn buttonkeep btn-xs" disabled>KEEP</button>
+                        or <button class="btn buttongive btn-xs" disabled>GIVE</button> the last {{ Constants.history }}
+                        times she was in the role of Player A.
+
+                        {% if player.treat >= 2 %}
+                        How the history score comes about is explained in more detail below.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <!--Player A's Screen-->
+            <div class="row">
+                <div class="col-sm-6 border rounded" id='pale'>
+                    <h5>Player A's Screen</h5>
+                    <p>
+                        Figure 1 (on the right) illustrates the screen Player A sees when making her decision. On the
+                        right-hand side panel she chooses an option between <button class="btn buttonkeep btn-xs" disabled>KEEP</button>
+                        and <button class="btn buttongive btn-xs" disabled>GIVE</button>.
+
+                        {% if player.treat == 1 %}
+                        On the left-hand side panel she sees player B's and her own history scores.
+                        {% elif player.treat >= 2 %}
+                        On the left-hand side panel she sees player B's history score.
+                        {% endif %}
+
+                        <br><br>
+
+                        {% if player.treat == 1 %}
+                        The <button class="btn buttonkeep btn-xs" disabled>K</button> 
+                        <button class="btn buttonkeep btn-xs" disabled>K</button> <button class="btn buttongive btn-xs" disabled>G</button>
+                        shown for Player B’s history score implies that Player B chose
+                        <button class="btn buttongive btn-xs" disabled>GIVE</button> the last time she was an A Player
+                        and choose <button class="btn buttonkeep btn-xs" disabled>KEEP</button> the two times before that.
+                        Your score <button class="btn buttongive btn-xs" disabled>G</button>
+                        <button class="btn buttongive btn-xs" disabled>G</button>
+                        <button class="btn buttongive btn-xs" disabled>G</button> implies that you chose
+                        <button class="btn buttongive btn-xs" disabled>GIVE</button> the last three times you were an A Player.
+
+                        {% elif player.treat >= 2 %}
+                        The <button class="btn buttonkeep btn-xs" disabled>K</button>
+                        <button class="btn buttonkeep btn-xs" disabled>K</button> <button class="btn buttongive btn-xs" disabled>G</button>
+                        shown for Player B’s history score implies that the last time Player B was an A Player the provided
+                        feedback indicates that she chose <button class="btn buttongive btn-xs" disabled>GIVE</button>
+                        while for the two times before that the feedback indicates that she chose
+                        <button class="btn buttonkeep btn-xs" disabled>KEEP</button>.
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="col-sm-6 border rounded" id='pale'>
+                    <b>Figure 1.</b>
+                    {% if player.treat == 1 %}
+                    <img width="100%" src="{% static "Inst_IndRecip/Img_6_A_Feed.jpeg" %}"/>
+                    {% elif player.treat >= 2 %}
+                    <img width="100%" src="{% static "Inst_IndRecip/Img_7_A_NoFeed.jpeg" %}"/>
+                    {% endif %}
+                </div>
+            </div>
+            <!--Player B's Screen-->
+            <div class="row">
+                <div class="col-sm-6 border rounded" id='pale'>
+                    <h5>Player B's Screen</h5>
+                    <p>
+                    {% if player.treat == 1 %}
+                        After Player A has made her choice, Player B observes this choice. Player B sees a screen as
+                        shown on Figure 2 (on the right). In the example shown in this screen, Player A chose
+                        <button class="btn buttongive btn-xs" disabled>GIVE</button> and the associated payoffs are displayed.
+                    {% elif player.treat >= 2 %}
+                        After Player A has made her choice, Player B observes this choice and sends a report indicating
+                        which option player A chose. Players B can choose what to report:
+                        <button class="btn buttongive btn-xs" disabled>GIVE</button>
+                        or <button class="btn buttonkeep btn-xs" disabled>KEEP</button>. So, the report does not always
+                        need to reflect the actual decisions made by player A. This report is then added to A's history score.
+                        <br><br>
+                        When choosing which report to send, Player B sees a screen as shown on Figure 2 (on the right). In
+                        the example shown in this screen, Player A chose <button class="btn buttongive btn-xs" disabled>GIVE</button> and the
+                        associated payoffs are displayed.
+                    {% endif %}
+                    </p>
+                </div>
+                <div class="col-sm-6 border rounded" id='pale'>
+                    <b>Figure 2.</b>
+                    {% if player.treat == 1 %}
+                    <img width="100%" src="{% static "Inst_IndRecip/Img_8_B_Truth.jpeg" %}"/>
+                    {% elif player.treat >= 2 %}
+                    <img width="100%" src="{% static "Inst_IndRecip/Img_9_B_NoFeed.jpeg" %}"/>
+                    {% endif %}
+                </div>
+            </div>
+            <!--History Score-->
+            {% if player.treat >= 2 %}
+            <div class="row">
+                <div class="col-sm-12 border rounded" id='pale'>
+                    <h5>History Score</h5>
+                    <p>
+                        In each period you are Player A you will receive feedback on player B's history score. However,
+                        you will only see your own history score in some cases.
+                        <br><br>
+                        In each period you are player B, you will receive feedback on your own history score in some cases
+                        but will not see player A's history score in any case.
+                        <br><br>
+                        Specifically, in each period, independent of whether you are player A or B, you will see your
+                        own history score with <b>10% probability</b> (there is a 90% chance that you do not see your own
+                        history score in that period). Below we show you the screens for player A (Figure 3) and player B
+                        (Figure 4) when they receive feedback about their own history score.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 border rounded" id='pale'>
+                    <b>Figure 3.</b>
+                    <img width="100%" src="{% static "Inst_IndRecip/Img_6_A_Feed.jpeg" %}"/>
+                </div>
+                <div class="col-sm-6 border rounded" id='pale'>
+                    <b>Figure 4.</b>
+                    <img width="100%" src="{% static "Inst_IndRecip/Img_10_B_Feed.jpeg" %}"/>
+                </div>
+            </div>
+            {% endif %}
+            <!--Payment-->
+            <div class="row">
+                <div class="col-sm-12 border rounded" id='pale'>
+                    <h5>Payment</h5>
+                    <p>
+                        After the experiment has finished (at the end of period {{ Constants.num_rounds}}), the computer
+                        will randomly choose <b>{{ Constants.chosen_rounds}}</b> periods. The points you received in these
+                        {{ Constants.chosen_rounds}} periods (independently of which role you played) will determine your
+                        earnings from this experiment.
+                    </p>
+
+                    {% if player.treat == 2 %}
+                    <h5>Recognition</h5>
+                    <p>
+                        In addition, we will rank all {{ Constants.players_per_group }} players according to
+                        their history scores and inform the player on top that she has the best history score. To decide who
+                        has the best history score, the computer will randomly choose, for each player, 10 instances where
+                        that player was in the role of Player A. Then, it will count the number of times, within these ten
+                        periods, the history score reports <button class="btn buttongive btn-xs" disabled>GIVE</button>.
+                        The player with the highest number of <button class="btn buttongive btn-xs" disabled>GIVE</button>'s
+                        will have the best history score and will be informed about it. In case of a tie (2 or more players
+                        have the same highest score) the computer randomly chooses one of the players with the highest
+                        score as the one with the best history score and informs her about it.
+                    </p>
+                    {% elif player.treat == 3 %}
+                    <h5>Bonus</h5>
+                    <p>
+                        In addition, we will rank all {{ Constants.players_per_group }} players according to their history
+                        scores and give a bonus of <b>{{ Constants.bonus }}</b> to the player on top that has the best history score.
+                        To decide who has the best history score, the computer will randomly choose, for each player, 10
+                        instances where that player was in the role of Player A. Then, it will count the number of times,
+                        within these ten periods, the history score reports <button class="btn buttongive btn-xs" disabled>GIVE</button>.
+                        The player with the highest number of <button class="btn buttongive btn-xs" disabled>GIVE</button>'s
+                        will have the best history score and will earn the bonus. In case of a tie (2 or more players
+                        have the same highest score) the computer randomly chooses one of the players with the highest
+                        score as the one with the best history score and gives her the bonus.
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,128 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border border-dark text-white rounded" id="upper">
+        <h2> Welcome to this study </h2>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" id="network">
+            <img width="100%" src="{% static "Inst_IndRecip/Img_1.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" id="pale">
+        <p>
+            <br>
+            Your earnings from the experiment will largely depend on your decisions and the decisions of others. Therefore,
+            it is important that you read the instructions carefully.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" id="network">
+            <img width="100%" src="{% static "Inst_IndRecip/Img_2.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" id="pale">
+        <p>
+            <br>
+            All interactions between you and other participants will occur through the computer terminals. Please do not
+            talk directly to or attempt to communicate with other participants during the session
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" id="network">
+            <img width="100%" src="{% static "Inst_IndRecip/Img_3.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" id="pale">
+        <p>
+            <br>
+            Please also do not ask questions aloud. If you have a question, raise your hand and a member of the
+            experimenter team will come to you.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" id="network">
+            <img width="100%" src="{% static "Inst_IndRecip/Img_4.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" id="pale">
+        <p>
+            <br>
+            All personal electronic devices should remain switched off until the end of the experiment.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 border text-white rounded" id="network">
+            <img width="100%" src="{% static "Inst_IndRecip/Img_5.jpeg" %}"/>
+      </div>
+      <div class="col-sm-10 border rounded" id="pale">
+        <p>
+            <br>
+            Throughout the experiment, we will not speak of <b>USD</b>, but rather of <b>points</b>. At the end of the experiment
+            the total amount of points you earned will be converted to USD at the following exchange rate:
+            <b>{{ Constants.exchange }} points = 1 USD</b>. You will also receive a show up fee of USD {{ Constants.min_pay}}.
+            You will be paid your earnings in cash, privately at the end of the session.
+        </p>
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continue </button>
+          <br><br>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+        .button:hover {
+            background-color: #FFFFFF;
+            color: #000000;
+            border: 2px solid #333333
+        }
+        .buttonkeep {
+            background-color: #E91E63;
+            color: #ffffff;
+            border: 0.5px solid #AD1457;
+            padding: 1px 2px;
+            display: inline-block;
+            font-size: 13px;
+        }
+        .buttongive {
+            background-color: #009688;
+            color: #ffffff;
+            border: 0.5px solid #00838F;
+            padding: 1px 2px;
+            display: inline-block;
+            font-size: 13px;
+        }
+        #upper{
+            background-color: #333333;
+        }
+        #middle{
+            background-color: #424242;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #pale{
+            background-color: #ffffff;
+        }
+    </style>
+{% endblock %}

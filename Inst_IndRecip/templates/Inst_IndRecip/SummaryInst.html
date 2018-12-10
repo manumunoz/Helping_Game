@@ -1,0 +1,65 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border border-dark text-white rounded" id="upper">
+            <h2> Instructions </h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    {% include Constants.instructions_template %}
+    <br>
+    <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Begin </button>
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+        .button:hover {
+            background-color: #FFFFFF;
+            color: #000000;
+            border: 2px solid #333333
+        }
+        .buttonkeep {
+            background-color: #E91E63;
+            color: #ffffff;
+            border: 0.5px solid #AD1457;
+            padding: 1px 2px;
+            display: inline-block;
+            font-size: 13px;
+        }
+        .buttongive {
+            background-color: #009688;
+            color: #ffffff;
+            border: 0.5px solid #00838F;
+            padding: 1px 2px;
+            display: inline-block;
+            font-size: 13px;
+        }
+        #upper{
+            background-color: #333333;
+        }
+        #middle{
+            background-color: #424242;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #pale{
+            background-color: #ffffff;
+        }
+    </style>
+{% endblock %}
