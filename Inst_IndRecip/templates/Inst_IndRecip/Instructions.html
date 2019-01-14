@@ -9,13 +9,13 @@
                 <div class="col-sm-12 border rounded" id='pale'>
                     <h5>Summary</h5>
                     <p>
-                        This experiment lasts for <b>{{ Constants.num_rounds}}</b> periods and throughout the experiment
-                        you are part of the same group of <b>{{ Constants.players_per_group }}</b> participants. At the
-                        beginning of each period the participants in your group of ten will be randomly divided into five
-                        pairs. One of the two participants in each pair will be assigned to the role of <b>Player A</b> and
-                        the other to the role of <b>Player B</b>. Your pair and the role you play will be randomly assigned
-                        by the computer at the start of each period. You will be informed of your role on the header of
-                        each screen. This is illustrated in the images below.
+                        This experiment lasts for <b>{{ Constants.num_rounds}}</b> periods. Throughout the experiment
+                        you will be in a group with <b>{{ Constants.players_per_group }}</b> other participants. The
+                        composition of the group will remain the same through out the experiment.
+                        At the start of each period one of the two participants will be assigned to <b>role A</b> and
+                        the other to <b> role B</b>.
+
+                        You will be informed of your role on the header of each screen. This is illustrated in the images below.
                     </p>
                 </div>
             </div>
@@ -30,12 +30,19 @@
                     </p>
                     <ul>
                         <li>If Player A picks <button class="btn buttonkeep btn-xs" disabled>KEEP</button>
-                            she will receive <b>{{ Constants.keep_a }} points</b> and Player B will receive
+                            he will earn <b>{{ Constants.keep_a }} points</b> and Player B will earn
                             <b>{{ Constants.keep_b }} points</b>. </li>
                         <br>
-                        <li>If Player A picks <button class="btn buttongive btn-xs" disabled>GIVE</button> she receives
-                            <b>{{ Constants.give_a }} points</b> while Player B receives <b>{{ Constants.give_b }} points</b>.</li>
+                        <li>If Player A picks <button class="btn buttongive btn-xs" disabled>GIVE</button> he earns
+                            <b>{{ Constants.give_a }} points</b> while Player B earns <b>{{ Constants.give_b }} points</b>.</li>
                     </ul>
+                    <p>
+                        In addition to affecting directly the earnings of the different participants. The decision whether
+                        to keep of give (can or will depending on treat) the history score of the individual assigned to role A.
+                        In every round, individual in role A will be able to see the last three decisions made by the person in
+                        role A when he was in
+                    </p>
+
                     <p>
                         Before making her decision, Player A observes Player B's history score. The history score provides
                         information on whether Player B chose <button class="btn buttonkeep btn-xs" disabled>KEEP</button>
@@ -51,7 +58,7 @@
             <!--Player A's Screen-->
             <div class="row">
                 <div class="col-sm-6 border rounded" id='pale'>
-                    <h5>Player A's Screen</h5>
+                    <h5>Your screen when you are in role A</h5>
                     <p>
                         Figure 1 (on the right) illustrates the screen Player A sees when making her decision. On the
                         right-hand side panel she chooses an option between <button class="btn buttonkeep btn-xs" disabled>KEEP</button>
@@ -98,7 +105,7 @@
             <!--Player B's Screen-->
             <div class="row">
                 <div class="col-sm-6 border rounded" id='pale'>
-                    <h5>Player B's Screen</h5>
+                    <h5>Your screen when you are in role B</h5>
                     <p>
                     {% if player.treat == 1 %}
                         After Player A has made her choice, Player B observes this choice. Player B sees a screen as
